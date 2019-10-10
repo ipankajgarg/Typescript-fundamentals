@@ -35,3 +35,6 @@ const logNumber: (i: number) => void = (i: number) => {
 };
 
 logNumber(0);
+
+var array: (string | number)[] = ["pa", 1];
+array[2] = "d";
