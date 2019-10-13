@@ -10,6 +10,9 @@ class Vehicle {
   protected honk(): void {
     console.log("beep");
   }
+  private method() {
+    console.log("method");
+  }
 }
 
 class CAr extends Vehicle {
