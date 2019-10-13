@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@types/faker": "^4.1.6",
+    "faker": "^4.1.0"
+  }
+}
