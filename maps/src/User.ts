@@ -1,5 +1,8 @@
 import faker from "faker";
-//import { MAppable } from "./CustomMap";
+//import { MAppable } from "./CustomMap"
+//class User implements MAppable
+//when we implements interface then typescript checks that
+// when we create an instance of class it must match with the properties of interface
 
 export class User {
   name: string;
