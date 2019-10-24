@@ -1,12 +1,16 @@
 import { MatchReader } from './MatchReader'
 import {CsvFileReader} from './CsvFileReader'
-import { MatchResult } from "./MatchResult"
+import {ConsoleReport} from './reportTargets/ConsoleReport'
+import {WinsAnalysis} from './analyzers/WinsAnalysis'
+import {Summary} from './Summary'
+import {HtmlReport}from './reportTargets/HtmlReport'
+
 //encoding:-utf8 means we are reading some kind of text file and want a string in response intead of buffer
 
-const csvFileReader = new CsvFileReader('football.csv')
+//const csvFileReader = new CsvFileReader('football.csv')
 
-const matchReader = new MatchReader(csvFileReader)
-
+const matchReader = MatchReader.fromCsv('football.csv')
+//
 matchReader.load()
 
 //const dateOfFirstMatch = reader.data[0][0]
@@ -17,17 +21,11 @@ matchReader.load()
 
 //enum -enumeration
 
+const summary = Summary.winsAnalysisWithHtmlReport('Man United')
+summary.buildAndPrintReport(matchReader.matches)
 
 
 
-let manUnitedWins = 0;
 
-for (let match of matchReader.matches) {
-  if (match[1] === "Man United" && match[5] === MatchResult.HomeWin) {
-    manUnitedWins++;
-  } else if (match[2] === "Man United" && match[5] === MatchResult.AwayWin) {
-    manUnitedWins++;
-  }
-}
 
-console.log(`Man united wins ${manUnitedWins}`);
+
