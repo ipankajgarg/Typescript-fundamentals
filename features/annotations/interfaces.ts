@@ -28,3 +28,9 @@ const printVehicle = (vehicle: Reportable): void => {
 
 printVehicle(oldCivic);
 printVehicle(drinks);
+
+//test
+// interface In {
+//     st:"easy";
+// }
+// var test :In={st:"easy"}
