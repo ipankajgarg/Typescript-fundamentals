@@ -15,9 +15,9 @@ const {
   coords: { lat, lng }
 }: { age: number; coords: { lat: number; lng: number } } = profile;
 
-// const {
-//   coords: { lat, lng }
-// }: { coords: { lat: number; lng: number } } = profile;
-interface name {
-  p: "string";
-}
+const {
+  coords: { lat, lng }
+}: { coords: { lat: number; lng: number } } = profile;
+// interface name {
+//   p: "string";
+// }
