@@ -9,10 +9,3 @@ user.on("click", () => {
 user.on("click", () => {
   console.log("Hi Click2");
 });
-
-user.on("i am weird", () => {
-  console.log("Hi Weird");
-});
-user.trigger("no event");
-
-//console.log(user);
