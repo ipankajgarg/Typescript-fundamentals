@@ -1,12 +1,20 @@
-interface UserProps {
+import axios, { AxiosResponse } from "axios";
+import { Eventing } from "./Eventing";
+import {Sync} from './Sync'
+
+
+const rootUrl = 'http://localhost:3000'
+
+export interface UserProps {
+  id?: number;
   name?: string;
   age?: number;
 }
 
-type Callback = () => void;
-
 export class User {
-  events: { [key: string]: Callback[] } = {};
+  public events: Eventing = new Eventing();
+
+  public sync:Sync<UserProps> = new Sync<UserProps>(rootUrl)
 
   constructor(private data: UserProps) {}
 
@@ -16,23 +24,5 @@ export class User {
 
   set(update: UserProps): void {
     Object.assign(this.data, update);
-  }
-
-  on(eventName: string, callback: Callback): void {
-    const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
-  }
-
-  trigger(eventName: string): void {
-    const handlers = this.events[eventName];
-
-    if (!handlers || handlers.length == 0) {
-      return;
-    }
-
-    handlers.forEach(callback => {
-      callback();
-    });
   }
 }

@@ -117,19 +117,23 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/models/User.ts":[function(require,module,exports) {
+})({"src/models/Eventing.ts":[function(require,module,exports) {
+
+},{}],"src/models/User.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var Eventing_1 = require("./Eventing");
+
 var User =
 /** @class */
 function () {
   function User(data) {
     this.data = data;
-    this.events = {};
+    this.events = new Eventing_1.Eventing();
   }
 
   User.prototype.get = function (propsName) {
@@ -140,29 +144,11 @@ function () {
     Object.assign(this.data, update);
   };
 
-  User.prototype.on = function (eventName, callback) {
-    var handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
-  };
-
-  User.prototype.trigger = function (eventName) {
-    var handlers = this.events[eventName];
-
-    if (!handlers || handlers.length == 0) {
-      return;
-    }
-
-    handlers.forEach(function (callback) {
-      callback();
-    });
-  };
-
   return User;
 }();
 
 exports.User = User;
-},{}],"src/index.ts":[function(require,module,exports) {
+},{"./Eventing":"src/models/Eventing.ts"}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -171,17 +157,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var User_1 = require("./models/User");
 
-var user = new User_1.User({});
-user.on("click", function () {
-  console.log("Hi Click1");
-});
-user.on("click", function () {
-  console.log("Hi Click2");
-});
-user.on("i am weird", function () {
-  console.log("Hi Weird");
-});
-user.trigger("no event"); //console.log(user);
+var user = new User_1.User({
+  name: "new record",
+  age: 0
+}); //user.set({ id: 1 });
+// user.set({ name: "NEWNAME", age: 999 });
+// user.on("click", () => {
+//   console.log("Hi Click1");
+// });
+// user.on("click", () => {
+//   console.log("Hi Click2");
+// });
 },{"./models/User":"src/models/User.ts"}],"../../../../.nvm/versions/node/v10.16.3/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -210,7 +196,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33071" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46699" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
