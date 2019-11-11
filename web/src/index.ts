@@ -1,6 +1,6 @@
 import { User } from "./models/User";
 
-const user = new User({ name: "new record", age: 0 });
+const user = new User({ id:1 ,name:"newer name",age:0});
 //user.set({ id: 1 });
 // user.set({ name: "NEWNAME", age: 999 });
 
@@ -11,4 +11,11 @@ const user = new User({ name: "new record", age: 0 });
 // user.on("click", () => {
 //   console.log("Hi Click2");
 // });
-//154
+user.on('save',function(){
+    console.log("user is changed")
+    console.log(user.get("name"))
+})
+
+user.save()
+
+// user.set({name:"New Name"})
